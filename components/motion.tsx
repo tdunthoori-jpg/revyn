@@ -2,6 +2,7 @@
 
 import { motion, type Variants, type MotionProps } from "framer-motion"
 import { type ReactNode } from "react"
+import type React from "react"
 
 // ── Shared variants ──────────────────────────────────────────────────────────
 
@@ -35,15 +36,17 @@ export const stagger = (staggerChildren = 0.08, delayChildren = 0): Variants => 
 interface AnimProps {
   children: ReactNode
   className?: string
+  style?: React.CSSProperties
   delay?: number
   once?: boolean
 }
 
 /** Fades + slides up on scroll into view */
-export function FadeUp({ children, className, delay = 0, once = true }: AnimProps) {
+export function FadeUp({ children, className, style, delay = 0, once = true }: AnimProps) {
   return (
     <motion.div
       className={className}
+      style={style}
       initial="hidden"
       whileInView="show"
       viewport={{ once, margin: "-40px" }}
@@ -59,6 +62,7 @@ export function FadeUp({ children, className, delay = 0, once = true }: AnimProp
 export function Stagger({
   children,
   className,
+  style,
   delay = 0,
   staggerDelay = 0.08,
   once = true,
@@ -66,6 +70,7 @@ export function Stagger({
   return (
     <motion.div
       className={className}
+      style={style}
       initial="hidden"
       whileInView="show"
       viewport={{ once, margin: "-40px" }}
@@ -75,6 +80,8 @@ export function Stagger({
     </motion.div>
   )
 }
+
+
 
 /** Single stagger child — use inside <Stagger> */
 export function StaggerItem({ children, className }: AnimProps) {

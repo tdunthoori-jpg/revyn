@@ -13,7 +13,7 @@ export async function proxy(req: NextRequest) {
     if (!isPublicRoute(request)) {
       await auth.protect()
     }
-  })(req)
+  })(req, {} as never)
 }
 
 export const config = {

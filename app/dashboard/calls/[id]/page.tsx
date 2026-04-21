@@ -186,7 +186,9 @@ function ScoreRing({ score, size = 120 }: { score: number; size?: number }) {
         />
       </svg>
       <div className="text-center z-10">
-        <AnimatedNumber value={score} className={cn("font-bold tabular-nums", score >= 80 ? "text-emerald-400" : score >= 60 ? "text-amber-400" : "text-red-400")} style={{ fontSize: size * 0.26 } as React.CSSProperties} />
+        <span className={cn("font-bold tabular-nums", score >= 80 ? "text-emerald-400" : score >= 60 ? "text-amber-400" : "text-red-400")} style={{ fontSize: size * 0.26 }}>
+          <AnimatedNumber value={score} />
+        </span>
         <div className="text-white/30 font-medium" style={{ fontSize: size * 0.1 }}>/ 100</div>
       </div>
     </div>
@@ -729,7 +731,9 @@ export default function CallDetailPage() {
                         transition={{ duration: 0.3, delay: i * 0.06 }}>
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-xs text-white/50 font-medium">{label}</span>
-                          <AnimatedNumber value={score} className="text-sm font-bold tabular-nums" style={{ color } as React.CSSProperties} />
+                          <span className="text-sm font-bold tabular-nums" style={{ color }}>
+                            <AnimatedNumber value={score} />
+                          </span>
                         </div>
                         <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
                           <motion.div className="h-full rounded-full"
